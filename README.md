@@ -1,0 +1,1 @@
+# esercitazione-Ingegneria-sistemi-meccanici
