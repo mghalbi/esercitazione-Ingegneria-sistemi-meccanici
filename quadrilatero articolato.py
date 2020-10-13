@@ -69,7 +69,6 @@ for i in np.arange(0, len(valpha)):
 	Tna = r*pow(w, 2)*cmath.exp(complex(0,1)*valpha[i])+b*pow(betap,2)*cmath.exp(complex(0,1)*beta)-c*pow(gammap,2)*cmath.exp(complex(0,1)*gamma)
 	xpp = np.dot(inv(np.array([[cbetap.real, cgammap.real], [cbetap.imag, cgammap.imag]])),np.array([Tna.real, Tna.imag]).transpose())
 	matx1.append(-xpp);
-	print(matx1)	
 	betapp = -xpp[0]
 	gammapp = -xpp[1] 
 	# velocità e accelerazioni baricentri
@@ -91,16 +90,39 @@ X1 = [x[0] for x in matx1]
 Y = [x[1] for x in matx]
 Y1 = [x[1] for x in matx1]
 
+# Grafico della coppia motrice
 plt.plot(valpha, Mm)
+plt.xlabel('\u03B1(rad)')
+plt.ylabel('$M_m(Nm)$')
+plt.title('Coppia Motrice')
+plt.grid()
+fig = plt.gcf()
+fig.canvas.set_window_title('Coppia Motrice')
 plt.show()
-#mpl.style.use('seaborn')
 
-#fig, (ax1, ax2) = plt.subplots(2);
+#Grafico velocità e accelerazione della biella
+mpl.style.use('seaborn')
+fig, (ax1, ax2) = plt.subplots(2);
+ax1.set_xlabel('\u03B1(rad)')
+ax1.set_ylabel('$\dot\u03B2$(rad/s\u00b2)')
+ax1.set_title('Velocità angolare della biella')
+ax1.plot(valpha, X, color='green')
+ax2.set_xlabel('\u03B1(rad)')
+ax2.set_ylabel('$\ddot\u03B2$(rad/s\u00b2)')
+ax2.set_title('Accelerazione angolare della biella')
+ax2.plot(valpha, X1)
+fig.canvas.set_window_title('Velocità & Accelerazione biella')
+plt.show()
 
-#ax1.plot(valpha, X, 'C1', label='Forza motrice')
-#ax2.plot(valpha, X1, 'C1', label='Forza motrice')
-#plt.show()
-
-#ax1.plot(valpha, Y, 'C', label='Forza motrice')
-#ax2.plot(valpha, Y1, 'C', label='Forza motrice')
+#Grafico velocità e accelerazione del bilanciere
+fig, (ax1, ax2) = plt.subplots(2);
+ax1.set_xlabel('\u03B1(rad)')
+ax1.set_ylabel('$\dot\u03B3$(rad/s\u00b2)')
+ax1.set_title('Velocità angolare del bilanciere')
+ax1.plot(valpha, Y, color='green')
+ax2.set_xlabel('\u03B1(rad)')
+ax2.set_ylabel('$\ddot\u03B3$(rad/s\u00b2)')
+ax2.set_title('Accelerazione angolare del bilanciere')
+ax2.plot(valpha, Y1)
+fig.canvas.set_window_title('Velocità & Accelerazione bilanciere')
 plt.show()
