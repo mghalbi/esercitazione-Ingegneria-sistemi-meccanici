@@ -1,6 +1,6 @@
-# Author: MohsenGhalbi 
+# Author: Mohsen Ghalbi 
 # Date: 08/10/2019
-# Description: DInamica di un veicolo ferrovario
+# Description: Dinamica di un veicolo ferrovario
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -45,17 +45,27 @@ Fr = Fa + Fp
 
 Frrid = Fr*(tau*D/2)/eta
 
-# rappresentazione del grafico
-mpl.style.use('seaborn')
-
-fig, (ax1, ax2) = plt.subplots(2);
-
-ax1.plot(wmridkmh, Cmrid, 'C1', label='Forza motrice')
-ax1.plot(vkmh, Fr,  'C0', label='Forza resistente')
-ax2.plot(n, Cm, 'C1', label='Forza motrice')
-ax2.plot(vrid, Frrid,  'C0', label='Forza resistente')
-#ax1.xlabel('velocità [km/h]')
-#ax1.ylabel('Forza [N]')
-#ax1.title('Curva caratteristiche del carico')
-#ax1.legend()
+# Grafico della coppia carico
+plt.plot(wmridkmh, Cmrid, 'C1', label='Forza motrice')
+plt.plot(vkmh, Fr,  'C0', label='Forza resistente')
+plt.legend(loc="upper right")
+plt.xlabel('velocità km/h')
+plt.ylabel('forza N')
+plt.title('Curve caratteristiche lato carico')
+plt.grid()
+fig = plt.gcf()
+fig.canvas.set_window_title('Curve caratteristiche lato carico')
 plt.show()
+
+
+plt.plot(n, Cm, 'C1', label='Forza motrice')
+plt.plot(vrid, Frrid,  'C0', label='Forza resistente')
+plt.legend(loc="upper right")
+plt.xlabel('velocità giri/min')
+plt.ylabel('Coppia Nm')
+plt.title('Curve caratteristiche lato motore')
+plt.grid()
+fig = plt.gcf()
+fig.canvas.set_window_title('Curve caratteristiche lato motore ')
+plt.show()
+
