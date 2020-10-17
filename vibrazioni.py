@@ -10,15 +10,15 @@ from scipy import integrate
 # parametri
 fn = 1; 
 wn = 2*np.pi*fn;
-xi = 1.5; # fattore di smorzamento
+xi = 0; # fattore di smorzamento
 m = 1;
-F0 = 0; # forzante
-W = 0.2*wn; # pulsazione della forzante
+F0 = 10; # forzante
+W = wn; # pulsazione della forzante
 tf = 10; # tempo di integrazione
 dt = 0.001; # passo di integrazione
 t = np.arange(0,tf,dt)
-y1 = [0.1]; # posizione
-y2 = [-10]; # velocità
+y1 = [0]; # posizione
+y2 = [0]; # velocità
 y1p = [];
 y2p = [];
 
@@ -61,4 +61,7 @@ for i in  np.arange(len(t)):
 
 
 plt.plot(t,y1[:-1],t,y[:,0]);
+plt.xlabel('t [s]')
+plt.ylabel('xF/$F_0$')
+plt.grid()
 plt.show();
